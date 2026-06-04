@@ -1,10 +1,14 @@
 # Amazon DocumentDB Sample Data and Workload
 
-This directory provides a small demo scaffold for Amazon DocumentDB 5.0:
+This directory provides optional demo scaffolding for Amazon DocumentDB 5.0. It is useful when you want to create repeatable Performance Insights query signal in a non-production cluster before testing the warm-up toolkit.
+
+You do not need this directory for a real migration. For production migration planning, run the `query-warmup/` scripts against Performance Insights data from the real source cluster.
 
 - `seed_data.py` seeds fake generic data into multiple databases and collections.
 - `workload_generator.py` generates a balanced mixed workload so AWS Performance Insights records repeated top queries.
 - `schemas/` documents the sample collections and example documents.
+
+The sample scripts connect to a DocumentDB-compatible cluster only when you run them explicitly. Use a test cluster and avoid production credentials.
 
 ## Dataset layout
 
@@ -134,7 +138,7 @@ python3 sample-data/workload_generator.py --help
 1. Seed the collections.
 2. Run the workload generator.
 3. Wait for AWS Performance Insights to populate and stabilize.
-4. Perform the extraction step.
+4. Perform the extraction step from `query-warmup/`.
 
 ## How long to run before extracting Performance Insights
 
